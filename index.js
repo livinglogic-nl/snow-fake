@@ -62,3 +62,14 @@ export const uuid = (options = {}) => {
   return crypto.randomUUID();
 }
 
+export const date = (options = {}) => {
+  let { min, max } = options;
+  if(min === undefined) { min = '1970-01-01'; }
+  if(max === undefined) { max = '2050-01-01'; }
+
+  //TODO: validate yyyy-mm-dd
+  const dmin = new Date(min).getTime();
+  const dmax = new Date(max).getTime();
+
+  return new Date(dmin + Math.floor(Math.random()*(dmax - dmin))).toISOString();
+}
